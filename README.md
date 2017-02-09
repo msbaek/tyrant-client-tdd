@@ -81,3 +81,27 @@ public class TyrantMapTest {
 원하는 바를 잘 기억하기 위해 지우지 않고 comment out만 하고,
 
 문제를 작게 나눠서 짧은 싸이클로 개발하고 피드백을 얻을 수 있도록 한다.
+
+## 4. 제일 쉽고, 바로 실행해 볼 수 있는 일로 시작
+
+무엇을 제일 먼저 해 봐야 할까 ?
+
+socket 접속이 되는지 부터 확인한다.
+
+`new Socket("localhost", 1978);`
+
+그리고 실행해 본다.
+
+tyrant 서버가 기동되어 있지 않아 `java.net.ConnectException: Connection refused`이 발생한다.
+
+### 4.1 tokyo-tyrant 설치 및 기동
+
+`brew install homebrew/boneyard/tokyo-tyrant`
+
+https://github.com/Homebrew/homebrew-boneyard 를 참고해서 home brew repo에서 제거된 패키지 설치 
+
+아래와 같이 서버 기동
+
+`/usr/local/Cellar/tokyo-tyrant/1.1.41_1/bin $ ./ttserver`
+
+이제 테스트는 성공한다.
