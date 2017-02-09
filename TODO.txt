@@ -1,0 +1,25 @@
+TODO
+Function List
+--------------------------------
+* put(0x10)
+* get(0x30)
+* remove(0x20)
+* vanish(0x72)
+* iterator
+* size(0x80)
+* reset(0x50)
+* get next key(0x51)
+* not found(1)
+* success(0)
+
+port    1978
+--------------------------------
+
+packet structure
+--------------------------------
+1   OPERATION_PREFIX(0xC8)
+1   OPERATION_CODE
+4   key length
+4   value length
+n   key
+n   value
