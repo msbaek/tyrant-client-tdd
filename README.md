@@ -105,3 +105,29 @@ https://github.com/Homebrew/homebrew-boneyard 를 참고해서 home brew repo에
 `/usr/local/Cellar/tokyo-tyrant/1.1.41_1/bin $ ./ttserver`
 
 이제 테스트는 성공한다.
+
+## 5. put해 본다.
+
+소켓 접속이 되면 put을 해 보고 제대로 put되었는지 확인해 보고 싶을 것이다.
+
+코드를 작성하고 실행해 본다
+
+```java
+	Socket s = new Socket("localhost", 1978);
+	OutputStream writer = s.getOutputStream();
+	writer.write(0xC8); // operation prefix
+	writer.write(0x10); // put operation
+	writer.write(0);
+	writer.write(0);
+	writer.write(0);
+	writer.write(3); // 4 byte
+	writer.write(0);
+	writer.write(0);
+	writer.write(0);
+	writer.write(5); // 4 byte
+	writer.write(new byte [] {'k', 'e', 'y'}); // key
+	writer.write(new byte [] {'v', 'a', 'l', 'u', 'e'}); // value
+	InputStream reader = s.getInputStream();
+	int status = reader.read();
+	assertThat(status, is(0));
+```
