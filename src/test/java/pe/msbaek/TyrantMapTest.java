@@ -2,9 +2,7 @@ package pe.msbaek;
 
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 import static org.hamcrest.core.Is.is;
@@ -28,20 +26,14 @@ public class TyrantMapTest {
 
 		public void put(byte[] key, byte[] value) throws IOException {
 			Socket s = new Socket("localhost", 1978);
-			OutputStream writer = s.getOutputStream();
+			DataOutputStream writer = new DataOutputStream(s.getOutputStream());
 			writer.write(OPERATION_PREFIX);
 			writer.write(PUT_OPERATION);
-			writer.write(0);
-			writer.write(0);
-			writer.write(0);
-			writer.write(3); // 4 byte
-			writer.write(0);
-			writer.write(0);
-			writer.write(0);
-			writer.write(5); // 4 byte
+			writer.writeInt(key.length);
+			writer.writeInt(value.length);
 			writer.write(key);
 			writer.write(value);
-			InputStream reader = s.getInputStream();
+			DataInputStream reader = new DataInputStream(s.getInputStream());
 			int status = reader.read();
 			assertThat(status, is(0));
 		}

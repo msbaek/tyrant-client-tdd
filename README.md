@@ -155,3 +155,8 @@ Detail 코드를 객체로 추출한다
 - extract parameter(key, value)
 
 ![](img/rename-extract-fields-parameters.png)
+
+### 6.3 Introduce DataInputStream and DataOutputStream
+
+![](img/introduce-datainputstream.png)
+
