@@ -19,22 +19,15 @@ class TyrantMap {
 		writer.writeInt(value.length);
 		writer.write(key);
 		writer.write(value);
-		int status = reader.read();
-		if(status != 0)
-			throw new IllegalStateException();
+		validateStatus();
 	}
 
 	public byte[] get(byte[] key) throws IOException {
 		writeOperation(GET_OPERATION);
 		writer.writeInt(key.length);
 		writer.write(key);
-		int status = reader.read();
-		if(status != 0)
-			throw new IllegalStateException();
-		int size = reader.readInt();
-		byte[] results = new byte[size];
-		reader.read(results);
-		return results;
+		validateStatus();
+		return readBytes();
 	}
 
 	public void open() throws IOException {
@@ -45,6 +38,19 @@ class TyrantMap {
 
 	public void close() throws IOException {
 		socket.close();
+	}
+
+	private byte[] readBytes() throws IOException {
+		int size = reader.readInt();
+		byte[] results = new byte[size];
+		reader.read(results);
+		return results;
+	}
+
+	private void validateStatus() throws IOException {
+		int status = reader.read();
+		if(status != 0)
+			throw new IllegalStateException();
 	}
 
 	private void writeOperation(int putOperation) throws IOException {

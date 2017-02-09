@@ -191,13 +191,13 @@ Detail 코드를 객체로 추출한다
 
 ![](img/same-as-high-level-test.png)
 
-## 8.1 extract method writeOperation
+### 8.1 extract method writeOperation
 
 ![](img/extract-method-writeOperation.png)
 
 ![](img/after-extract-method-writeOperation.png)
 
-## 8.2 Move Inner to upper level
+### 8.2 Move Inner to upper level
        
 - move-inner-to-upper-level
 - fix compile errors
@@ -205,3 +205,8 @@ Detail 코드를 객체로 추출한다
 - remove dependency to junit, hamcrest
 
 ![](img/move-inner-to-upper-level.png)
+
+### 8.3 extract more methods
+
+- extract method validateStatus and move down
+- extract method readBytes
