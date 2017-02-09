@@ -41,3 +41,29 @@ n   value
 ```
 
 TODO에는 구현할 기능 목록, tyrant 접속 포트번호, TCP Packet 구조 등을 기록.
+
+## 2. Start with High Level Test
+
+원하는 것이 무엇인지를 표현하는 상위 레벨의 테스트로 시작한다.
+
+이때 assert 부터 반대 순으로 테스트를 작성한다.
+
+그리고 intellij의 show intention actions(opt+enter)를 이용해서 진행한다.
+
+```java
+public class TyrantMapTest {
+	@Test
+	public void get_retrives_what_was_put() {
+		TyrantMap map = new TyrantMap(); // step 2.1
+		byte[] key = "key".getBytes(); // step 2.2
+		byte[] value = "value".getBytes(); // step 2.3
+		assertThat(map.get(key), is(value)); // step 1
+	}
+
+	private class TyrantMap { // step 2.4
+		public byte[] get(byte[] key) { // step 2.5
+			return new byte[0];
+		}
+	}
+}
+```
