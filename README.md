@@ -131,3 +131,18 @@ https://github.com/Homebrew/homebrew-boneyard 를 참고해서 home brew repo에
 	int status = reader.read();
 	assertThat(status, is(0));
 ```
+## 6. Refactoring
+
+모든 코드는 이야기 하듯이 작성되어야 한다(잘 쓰여진 산문처럼 읽을 수 있어야 한다).
+
+그런데 이 코드는 테스트가 무엇을 하는지 이야기하고 있지 않고 어떻게 구현되었는지를 드러내고 있다(구현 디테일을 드러내고 있다).
+
+커멘트 처리한 처음 3줄이 테스트가 무엇을 하는지에 대한 이야기이다.
+
+### 6.1 Extract Method Object - TyrantMap
+
+Detail 코드를 객체로 추출한다
+
+![](img/extract-method-object.png)
+
+![](img/after-extract-method-object.png)
