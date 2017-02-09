@@ -17,7 +17,13 @@ public class TyrantMapTest {
 //		byte[] value = "value".getBytes(); // step 2.3
 //		assertThat(map.get(key), is(value)); // step 1
 
-		new TyrantMap().put(new byte[]{'k', 'e', 'y'}, new byte[]{'v', 'a', 'l', 'u', 'e'});
+		byte[] key = {'k', 'e', 'y'};
+		byte[] value = {'v', 'a', 'l', 'u', 'e'};
+
+		TyrantMap map = new TyrantMap();
+		map.open();
+		map.put(key, value);
+		map.close();
 	}
 
 	private class TyrantMap {
@@ -28,7 +34,6 @@ public class TyrantMapTest {
 		private DataInputStream reader;
 
 		public void put(byte[] key, byte[] value) throws IOException {
-			open();
 			writer.write(OPERATION_PREFIX);
 			writer.write(PUT_OPERATION);
 			writer.writeInt(key.length);

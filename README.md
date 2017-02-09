@@ -168,3 +168,9 @@ Detail 코드를 객체로 추출한다
 ![](img/extract-method-open.png)
 
 ### 6.5 implement method close(top down)
+
+### 6.6 call open/close
+
+- extract variable
+- call open from test not in put
+- extract variable(key, value)
