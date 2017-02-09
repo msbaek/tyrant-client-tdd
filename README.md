@@ -190,3 +190,9 @@ Detail 코드를 객체로 추출한다
 이제 최초 작성했던 High Level Test와 동일한 모습을 갖게 되었다.
 
 ![](img/same-as-high-level-test.png)
+
+## 8.1 extract method writeOperation
+
+![](img/extract-method-writeOperation.png)
+
+![](img/after-extract-method-writeOperation.png)
