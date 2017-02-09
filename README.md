@@ -182,3 +182,11 @@ Detail 코드를 객체로 추출한다
 
 ![](img/implement-get.png)
 
+## 8. refactoring
+
+- extract field(map)
+- extract methods(setUp, tearDown)
+
+이제 최초 작성했던 High Level Test와 동일한 모습을 갖게 되었다.
+
+![](img/same-as-high-level-test.png)
