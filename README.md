@@ -146,3 +146,12 @@ Detail 코드를 객체로 추출한다
 ![](img/extract-method-object.png)
 
 ![](img/after-extract-method-object.png)
+
+### 6.2 more refactoring
+
+- rename invoke to put
+- extract field(OPERATION_PREFIX, PUT_OPERATION)
+- remove unnecessary comments(duplicated)
+- extract parameter(key, value)
+
+![](img/rename-extract-fields-parameters.png)

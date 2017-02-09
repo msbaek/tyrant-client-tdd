@@ -19,15 +19,18 @@ public class TyrantMapTest {
 //		byte[] value = "value".getBytes(); // step 2.3
 //		assertThat(map.get(key), is(value)); // step 1
 
-		new TyrantMap().invoke();
+		new TyrantMap().put(new byte[]{'k', 'e', 'y'}, new byte[]{'v', 'a', 'l', 'u', 'e'});
 	}
 
 	private class TyrantMap {
-		public void invoke() throws IOException {
+		public static final int OPERATION_PREFIX = 0xC8;
+		public static final int PUT_OPERATION = 0x10;
+
+		public void put(byte[] key, byte[] value) throws IOException {
 			Socket s = new Socket("localhost", 1978);
 			OutputStream writer = s.getOutputStream();
-			writer.write(0xC8); // operation prefix
-			writer.write(0x10); // put operation
+			writer.write(OPERATION_PREFIX);
+			writer.write(PUT_OPERATION);
 			writer.write(0);
 			writer.write(0);
 			writer.write(0);
@@ -36,8 +39,8 @@ public class TyrantMapTest {
 			writer.write(0);
 			writer.write(0);
 			writer.write(5); // 4 byte
-			writer.write(new byte [] {'k', 'e', 'y'}); // key
-			writer.write(new byte [] {'v', 'a', 'l', 'u', 'e'}); // value
+			writer.write(key);
+			writer.write(value);
 			InputStream reader = s.getInputStream();
 			int status = reader.read();
 			assertThat(status, is(0));
