@@ -167,3 +167,4 @@ Detail 코드를 객체로 추출한다
 
 ![](img/extract-method-open.png)
 
+### 6.5 implement method close(top down)

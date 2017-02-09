@@ -44,5 +44,9 @@ public class TyrantMapTest {
 			writer = new DataOutputStream(socket.getOutputStream());
 			reader = new DataInputStream(socket.getInputStream());
 		}
+
+		private void close() throws IOException {
+			socket.close();
+		}
 	}
 }
