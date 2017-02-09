@@ -23,19 +23,26 @@ public class TyrantMapTest {
 	private class TyrantMap {
 		public static final int OPERATION_PREFIX = 0xC8;
 		public static final int PUT_OPERATION = 0x10;
+		private Socket socket;
+		private DataOutputStream writer;
+		private DataInputStream reader;
 
 		public void put(byte[] key, byte[] value) throws IOException {
-			Socket s = new Socket("localhost", 1978);
-			DataOutputStream writer = new DataOutputStream(s.getOutputStream());
+			open();
 			writer.write(OPERATION_PREFIX);
 			writer.write(PUT_OPERATION);
 			writer.writeInt(key.length);
 			writer.writeInt(value.length);
 			writer.write(key);
 			writer.write(value);
-			DataInputStream reader = new DataInputStream(s.getInputStream());
 			int status = reader.read();
 			assertThat(status, is(0));
+		}
+
+		private void open() throws IOException {
+			socket = new Socket("localhost", 1978);
+			writer = new DataOutputStream(socket.getOutputStream());
+			reader = new DataInputStream(socket.getInputStream());
 		}
 	}
 }

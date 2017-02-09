@@ -160,3 +160,10 @@ Detail 코드를 객체로 추출한다
 
 ![](img/introduce-datainputstream.png)
 
+### 6.4 extract method open(bottom up)
+    
+- move line up(reader)
+- extract fields
+
+![](img/extract-method-open.png)
+
