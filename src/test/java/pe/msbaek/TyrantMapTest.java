@@ -23,12 +23,14 @@ public class TyrantMapTest {
 		TyrantMap map = new TyrantMap();
 		map.open();
 		map.put(key, value);
+		assertThat(map.get(key), is(value));
 		map.close();
 	}
 
 	private class TyrantMap {
 		public static final int OPERATION_PREFIX = 0xC8;
 		public static final int PUT_OPERATION = 0x10;
+		public static final int GET_OPERATION = 0x30;
 		private Socket socket;
 		private DataOutputStream writer;
 		private DataInputStream reader;
@@ -42,6 +44,19 @@ public class TyrantMapTest {
 			writer.write(value);
 			int status = reader.read();
 			assertThat(status, is(0));
+		}
+
+		public byte[] get(byte[] key) throws IOException {
+			writer.write(OPERATION_PREFIX);
+			writer.write(GET_OPERATION);
+			writer.writeInt(key.length);
+			writer.write(key);
+			int status = reader.read();
+			assertThat(status, is(0));
+			int size = reader.readInt();
+			byte[] results = new byte[size];
+			reader.read(results);
+			return results;
 		}
 
 		private void open() throws IOException {

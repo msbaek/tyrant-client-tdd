@@ -174,3 +174,11 @@ Detail 코드를 객체로 추출한다
 - extract variable
 - call open from test not in put
 - extract variable(key, value)
+
+## 7. implement get
+
+- add assert
+- implement by copying from put
+
+![](img/implement-get.png)
+
