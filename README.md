@@ -42,6 +42,10 @@ n   value
 
 TODO에는 구현할 기능 목록, tyrant 접속 포트번호, TCP Packet 구조 등을 기록.
 
+## 1.5 tutorial branch 만들기
+
+`git checkout -b diy diy`
+
 ## 2. Start with High Level Test
 
 원하는 것이 무엇인지를 표현하는 상위 레벨의 테스트로 시작한다.
