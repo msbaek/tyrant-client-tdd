@@ -214,3 +214,9 @@ Detail 코드를 객체로 추출한다
 
 - extract method validateStatus and move down
 - extract method readBytes
+
+## 9. 나머지들
+
+TyrantMapFinalTest.java에 나머지 모든 테스트가 순차적으로 들어있고, 테스트를 추가하면서 구현한 기능이 있다.
+
+나머지 기능들은 한번씩 스스로 해 보면 재밌을 것 같다 ^^
