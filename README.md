@@ -106,7 +106,7 @@ http://wiki.gurubee.net/display/DEVSTUDY/Tokyo+Cabinet+and+Tokyo+Tyrant
 
 저자의 경우 mac에서 아래와 같이 설치했음
 
-```
+```sh
 wget http://fallabs.com/tokyocabinet/tokyocabinet-1.4.48.tar.gz
 tar zxvf tokyocabinet-1.4.48.tar.gz
 cd tokyocabinet-1.4.48
