@@ -100,15 +100,46 @@ tyrant 서버가 기동되어 있지 않아 `java.net.ConnectException: Connecti
 
 ### 4.1 tokyo-tyrant 설치 및 기동
 
-`brew install homebrew/boneyard/tokyo-tyrant`
+http://wiki.gurubee.net/display/DEVSTUDY/Tokyo+Cabinet+and+Tokyo+Tyrant
 
-https://github.com/Homebrew/homebrew-boneyard 를 참고해서 home brew repo에서 제거된 패키지 설치 
+를 참고해서 설치
 
-아래와 같이 서버 기동
+저자의 경우 mac에서 아래와 같이 설치했음
 
-`/usr/local/Cellar/tokyo-tyrant/1.1.41_1/bin $ ./ttserver`
+```
+wget http://fallabs.com/tokyocabinet/tokyocabinet-1.4.48.tar.gz
+tar zxvf tokyocabinet-1.4.48.tar.gz
+cd tokyocabinet-1.4.48
+./configure --prefix=/Users/msbaek/temp/tokyocabinet
+make # 일부 warning이 나오나 무시
+make install # error 무시
 
-이제 테스트는 성공한다.
+wget http://fallabs.com/tokyotyrant/tokyotyrant-1.1.41.tar.gz
+tar zxvf tokyotyrant-1.1.41.tar.gz
+cd tokyotyrant-1.1.41
+
+./configure --prefix=/Users/msbaek/temp/tokyotyrant --with-tc=/Users/msbaek/temp/tokyocabinet
+make # 일부 warning이 나오나 무시
+make install # error 무시
+
+msbaek@msmac1 ~/temp/tokyotyrant-1.1.41 $ cd ../tokyotyrant/bin
+msbaek@msmac1 ~/temp/tokyotyrant/bin $ ./ttserver
+2022-12-21T10:02:14+09:00	SYSTEM	--------- logging started [84268] --------
+2022-12-21T10:02:14+09:00	SYSTEM	server configuration: host=(any) port=1978
+2022-12-21T10:02:14+09:00	SYSTEM	maximum connection: 2147483647
+2022-12-21T10:02:14+09:00	SYSTEM	opening the database: *
+2022-12-21T10:02:14+09:00	SYSTEM	service started: 84268
+2022-12-21T10:02:14+09:00	INFO	timer thread 1 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 1 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 2 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 3 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 4 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 5 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 6 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 7 started
+2022-12-21T10:02:14+09:00	INFO	worker thread 8 started
+2022-12-21T10:02:14+09:00	SYSTEM	listening started
+```
 
 ## 5. put해 본다.
 
