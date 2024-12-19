@@ -6,6 +6,17 @@ Kent Beck의 [원본 video](http://pragprog.com/screencasts/v-kbtdd/test-driven-
 
 이 예제는 mac, [home brew](https://github.com/Homebrew/brew), IntelliJ 를 사용하는 것을 가정하고 진행됩니다.
 
+## 0. Tyrant 설치
+```sh
+ ~/git/tools> brew install tokyo-cabinet
+ ~/git/tools> git clone git@github.com:msbaek/tokyotyrant-1.1.41.git
+ ~/git/tools> cd tokyotyrant-1.1.41
+ ~/git/tools/tokyotyrant-1.1.41> ./configure --prefix=/Users/msbaek/git/tools/tokyotyrant-1.1.41 --with-tc=/opt/homebrew/Cellar/tokyo-cabinet/1.4.48
+ ~/git/tools/tokyotyrant-1.1.41> make # ignore warnings
+ ~/git/tools/tokyotyrant-1.1.41> make install
+ ~/git/tools/tokyotyrant-1.1.41> ./ttserver # start server
+```
+
 ## 1. Create TODO List
 
 Kent Beck은 TDD의 첫번째 단계는 해야 할 목록 즉 TODO 목록을 작성하는 것이라고 합니다.
@@ -96,19 +107,9 @@ socket 접속이 되는지 부터 확인한다.
 
 그리고 실행해 본다.
 
-tyrant 서버가 기동되어 있지 않아 `java.net.ConnectException: Connection refused`이 발생한다.
+테스트는 성공한다.
 
-### 4.1 tokyo-tyrant 설치 및 기동
-
-`brew install homebrew/boneyard/tokyo-tyrant`
-
-https://github.com/Homebrew/homebrew-boneyard 를 참고해서 home brew repo에서 제거된 패키지 설치 
-
-아래와 같이 서버 기동
-
-`/usr/local/Cellar/tokyo-tyrant/1.1.41_1/bin $ ./ttserver`
-
-이제 테스트는 성공한다.
+port를 바꿔서 테스트가 실패하는지도 확인한다.
 
 ## 5. put해 본다.
 
