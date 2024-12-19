@@ -60,6 +60,7 @@ TODO에는 구현할 기능 목록, tyrant 접속 포트번호, TCP Packet 구�
 ## 2. Start with High Level Test
 
 원하는 것이 무엇인지를 표현하는 상위 레벨의 테스트로 시작한다.
+(이 상위 레벨 테스트를 Emily Bache는 목표 설계(Target Design)이라고도 부른다. 나는 첫번째 사용예를 통한 감 잡아보기라고도 부른다)
 
 이때 assert 부터 반대 순으로 테스트를 작성한다.
 
@@ -69,23 +70,18 @@ TODO에는 구현할 기능 목록, tyrant 접속 포트번호, TCP Packet 구�
 public class TyrantMapTest {
 	@Test
 	public void get_retrives_what_was_put() {
-		TyrantMap map = new TyrantMap(); // step 2.1
-		byte[] key = "key".getBytes(); // step 2.2
-		byte[] value = "value".getBytes(); // step 2.3
-		assertThat(map.get(key), is(value)); // step 1
-	}
-
-	private class TyrantMap { // step 2.4
-		public byte[] get(byte[] key) { // step 2.5
-			return new byte[0];
-		}
+        TyrantMap map = new TyrantMap(); // 3.1
+        final byte[] key = "key".getBytes(); // 3.2
+        final byte[] value = "value".getBytes(); // 3.3
+        map.put(key, value); // 2
+        assertThat(map.get(key)).isEqualTo(value); // 1
 	}
 }
 ```
 
 ## 3. Commnet Out
 
-이 테스트가 우리가 궁극적으로 원하는 바이지만,
+이 테스트가 우리가 궁극적(목표 설계)으로 원하는 바이지만,
 
 이걸 구현하려면 수십분이 걸리고, 테스트가 실패한다면 어디에 오류가 있는지 계속 따라 들어가면서 찾아야 한다.
 
